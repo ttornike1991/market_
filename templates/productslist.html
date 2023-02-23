@@ -9,11 +9,11 @@
   <div class="container">
     <h1>We have the best quality market, choose your product and enjoy! </h1>
     <img src="{% static 'images/food-g.png' %}" alt="Food" class="image-lists">
-    <a href="">add product</a>
+    <a href="{% url 'add-product' %}">add product</a>
   {% for product in object_list %}
     <div class="row">
-      <h2>customer name {{product.id}}</h2>
-      <h2>customer name {{product.name}}</h2>
+      <h2>name {{product.id}}</h2>
+      <h2>name {{product.name}}</h2>
       <p>price:{{product.price}}</p>
       <p>Quantity: {{product.quantity}}</p>
 
@@ -21,7 +21,7 @@
         <a href="{% url 'product' product.id %}" >Open product</a>
       </div>
         <div>
-          <a href="" >edit product</a>
+          <a href="{% url 'edit-product' product.id %}" >edit product</a>
         </div>
       <div>
         <form method="POST" action="">

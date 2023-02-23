@@ -7,10 +7,7 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=4, decimal_places=2)
     quantity = models.IntegerField()
 
-    def save(self):
-        #customization
-        if self.quantity > 100:
-            super(Product,self).save()
+
 
 
     def __str__(self):

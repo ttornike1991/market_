@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import ProductForm
+
 
 # Create your views here.
 from django.http import HttpResponse
@@ -28,4 +28,43 @@ def productView(request, id):
         'object':product
     }
     return render(request, template_name, context)
+
+from .forms import ProductForm
+
+def eddProductView(request):
+    template_name = "addProduct.html"
+    form = ProductForm()
+
+    if request.POST:
+        form = ProductForm(request.POST)
+        print('post test--------')
+
+        if form.is_valid():
+            form.save()
+            return redirect('product-list')
+        else:
+            print(form.errors)
+
+    context = {
+        'form': form
+    }
+    return render(request,template_name,context)
+
+def editProductView(request,id):
+
+    template_name = 'editProduct.html'
+    product = Product.objects.get(id=id)
+
+    form = ProductForm(instance=product)
+    if request.POST:
+        form = ProductForm(request.POST,instance=product)
+        if form.is_valid():
+            form.save()
+            return redirect('product-list')
+
+    context = {
+    'form':form,
+        'product_id':product.id,
+    }
+    return render(request,template_name,context)
 
