@@ -68,3 +68,10 @@ def editProductView(request,id):
     }
     return render(request,template_name,context)
 
+def deleteProductView(request,id):
+    print('delete datrigerda')
+    product = Product.objects.get(id=id)
+    if request.POST:
+        product.delete()
+    return redirect('product-list')
+

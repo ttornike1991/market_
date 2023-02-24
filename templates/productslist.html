@@ -24,7 +24,7 @@
           <a href="{% url 'edit-product' product.id %}" >edit product</a>
         </div>
       <div>
-        <form method="POST" action="">
+        <form method="POST" action="{% url 'delete-product' product.id %}">
           {%csrf_token%}
           <button class="allAddress" onclick="ConfirmDelete()">Delete Product
           </button>
