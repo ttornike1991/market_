@@ -1,14 +1,53 @@
-
 {% extends 'base.html' %}
 
 {% block title %}Customers{% endblock %}
 
 {% block content %}
 {% load static %}
-<div class="container">
-    <img src="{% static 'images/food2.png' %}" alt="Food" class="image">
+
+
+  <div class="container">
+    <h1>Our Top Customers  board!</h1>
+    <img src="{% static 'images/food-g.png' %}" alt="Food" class="image-lists">
+    <a href="{% url 'addCustomer' %}">add Customer</a>
+  {% for person in customers %}
     <div class="row">
-      <h2> Your name: {{first_name}}, {{last_name}}</h2>
+       
+      <h2>Id: {{person.id}}</h2>
+      <h2>FNAME: {{person.f_name}}</h2>
+      <h2>LName: {{person.l_name}}</h2>
+      <p>BirthDate: {{person.birth_date}}</p>
+      <p>Active?:  <span class="red">{{person.is_valide}} </span> </p>
+      <p>Email: {{person.email}}</p>
+
+      <div>
+        <a href="{% url 'customer' person.id %} " >Open Customer</a>
+      </div>
+        <div>
+          <a href="{% url 'editCustomer' person.id %} " >edit Customer</a>
+        </div>
+      <div>
+        <form method="POST" action="{% url 'delCustomer' person.id  %} ">
+          {%csrf_token%}
+          <button class="allAddress" onclick="ConfirmDelete()">Delete Customer
+          </button>
+
+          </form>
+        </div>
+
+
+
     </div>
+    {% endfor %}
+    <script>
+function ConfirmDelete()
+{
+  return confirm("Are you sure you want to delete?");
+}
+    </script>
+
+
+    <p>Still did not find your product? Don't worry. You can write us! </p>
   </div>
-{% endblock %}
+
+  {% endblock %}

@@ -17,6 +17,9 @@ width: 100%;
 
 
 }
+.red{
+color: red!important;
+}
 div a, .allAddress {
     background: #fff;
     box-shadow: 1px 3px 5px 3px #0000004f;
@@ -35,6 +38,10 @@ div a, .allAddress {
 
 
   background-color: white;
+}
+.row > p{
+  line-height:50px ;
+   
 }
 
 .button{

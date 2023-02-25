@@ -64,7 +64,7 @@ def editProductView(request,id):
 
     context = {
     'form':form,
-        'product_id':product.id,
+        'product_id':product.id
     }
     return render(request,template_name,context)
 
