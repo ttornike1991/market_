@@ -14,8 +14,9 @@
       <h2>Price: {{ object.price }}</h2>
       <h2>Quantity: {{ object.quantity }}</h2>
 
-      <form method="post" action="">
-
+      <form method="post" action="{% url 'product' object.id %}">
+        {% csrf_token %}
+        {{form.as_p}}
         <button type="submit" class="button">All Products</button>
       </form>
     </div>

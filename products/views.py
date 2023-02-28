@@ -24,12 +24,21 @@ def productslistView(request):
 def productView(request, id):
     product = Product.objects.get(id=id)
     template_name = "product.html"
+    orderForm=OrderForm()
+    if request.POST:
+        orderForm=OrderForm(request.POST)
+        if orderForm.is_valid():
+            data=orderForm.save(commit=False)
+            data.product_id=product
+            data.save()
+            print(orderForm.cleaned_data,data)
     context = {
-        'object':product
+        'object':product,
+        'form':OrderForm
     }
     return render(request, template_name, context)
 
-from .forms import ProductForm
+from .forms import ProductForm,OrderForm
 
 def eddProductView(request):
     template_name = "addProduct.html"
